@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # This view handles the landing page
 from .forms import NewUserForm
@@ -18,3 +18,14 @@ def users(request):
         return redirect('index')
 
     return render(request, 'm_f_app/users.html', {'userform': new_form})
+
+
+def edituser(request, id):
+    user = get_object_or_404(User, pk=id)
+    edit_form = NewUserForm(request.POST or None, instance=user)
+    if edit_form.is_valid():
+        edit_form.save()
+        return redirect('index')
+
+    return render(request, 'm_f_app/users.html', {'userform': edit_form})
+
