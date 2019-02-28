@@ -6,6 +6,10 @@
 </head>
 <body>
 <h1>Index</h1>
-Click <a href="{% url 'users' %}">HERE</a> to go to Users
+{% for user in user_list %}
+    <p>{{ user.first_name }}</p>
+    <p>{{ user.last_name }}</p>
+
+{% endfor %}
 </body>
 </html>
