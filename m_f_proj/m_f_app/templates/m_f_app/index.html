@@ -6,9 +6,12 @@
 </head>
 <body>
 <h1>Index</h1>
+<a href="{% url 'users' %}">Add New User</a>
 {% for user in user_list %}
     <p>{{ user.first_name }}</p>
     <p>{{ user.last_name }}</p>
+    <p>{{ user.email }}</p>
+    <hr/>
 
 {% endfor %}
 </body>
