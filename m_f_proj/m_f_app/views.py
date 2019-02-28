@@ -29,3 +29,11 @@ def edituser(request, id):
 
     return render(request, 'm_f_app/users.html', {'userform': edit_form})
 
+def deleteuser(request, id):
+    user = get_object_or_404(User, pk=id)
+    if request.method == 'POST':
+        user.delete()
+        return redirect('index')
+
+    return render(request, 'm_f_app/delete.html', {'selecteduser':user})
+
